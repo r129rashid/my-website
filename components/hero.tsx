@@ -12,6 +12,7 @@ import { MapPin, Download, Mail, Briefcase } from "lucide-react";
 import Image from "next/image";
 import { person } from "@/lib/data";
 import { EASE_OUT } from "./motion-wrapper";
+import { NetworkGraph } from "./network-graph";
 
 const words = person.shortName.split(" ");
 
@@ -43,6 +44,8 @@ export function Hero() {
       onMouseMove={handleMouseMove}
       className="relative min-h-dvh flex flex-col justify-center noise-overlay overflow-hidden"
     >
+      {/* Drifting network graph */}
+      <NetworkGraph />
       {/* Radial gradient — mouse-tracked */}
       <motion.div
         aria-hidden
@@ -223,7 +226,7 @@ export function Hero() {
             {/* Photo container */}
             <div className="relative w-36 h-44 sm:w-48 sm:h-60 md:w-72 md:h-[360px] rounded-xl overflow-hidden border border-border">
               <Image
-                src="/profile-placeholder.svg"
+                src="/profile.jpg"
                 alt={person.shortName}
                 fill
                 className="object-cover"

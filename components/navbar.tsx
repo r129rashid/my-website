@@ -8,11 +8,12 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Certifications", href: "#certifications" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
+  // Root-prefixed so section links resolve from /resume too, not just the homepage
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Certifications", href: "/#certifications" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Contact", href: "/#contact" },
   { label: "Full Resume", href: "/resume" },
 ];
 

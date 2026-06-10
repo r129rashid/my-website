@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    localPatterns: [{ pathname: "/public/**" }],
+    // Matches the URL path (files in public/ are served from "/"), not the filesystem path
+    localPatterns: [{ pathname: "/**" }],
   },
 };
 
