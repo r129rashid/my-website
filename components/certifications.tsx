@@ -4,10 +4,14 @@ import { motion } from "framer-motion";
 import { Award } from "lucide-react";
 import { featuredCerts } from "@/lib/data";
 import { FadeInView, staggerContainer, EASE_OUT } from "./motion-wrapper";
+import { PlusMarker } from "./plus-marker";
+import { cn } from "@/lib/utils";
 
 export function Certifications() {
   return (
-    <section id="certifications" className="py-24 md:py-32 border-t border-border">
+    <section id="certifications" className="relative py-24 md:py-32 border-t border-border">
+      <PlusMarker className="top-6 left-6 md:left-12" />
+      <PlusMarker className="top-6 right-6 md:right-12" />
       <div className="max-w-content mx-auto px-6 md:px-12">
         <FadeInView>
           <p className="text-xs font-sans font-medium uppercase tracking-wider text-accent mb-4">
@@ -32,10 +36,14 @@ export function Certifications() {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
         >
-          {featuredCerts.map((cert) => (
+          {featuredCerts.map((cert, i) => (
             <motion.div
               key={cert.name}
-              className="group relative bg-bg-surface border border-border rounded p-6 overflow-hidden cursor-default"
+              className={cn(
+                "group relative bg-bg-surface border border-border rounded p-6 overflow-hidden cursor-default",
+                // Staggered column rhythm — middle card sits lower on desktop
+                i === 1 && "lg:mt-8"
+              )}
               variants={{
                 hidden: { opacity: 0, scale: 0.96 },
                 visible: {

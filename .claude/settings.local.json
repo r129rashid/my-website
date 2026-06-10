@@ -7,7 +7,9 @@
       "Bash(sips -s format jpeg -s formatOptions 85 image-0.png --out public/profile.jpg)",
       "Bash(npm run *)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

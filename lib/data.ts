@@ -2,7 +2,7 @@ export const person = {
   name: "Rabi Rashid Mohammed Shaik",
   shortName: "Rabi Rashid",
   title: "Senior Manager · Digital Banking & Product",
-  tagline: "12+ years driving digital transformation across retail & investment banking",
+  tagline: "Est. 2014 · 12+ years driving digital transformation across retail & investment banking",
   location: "Riyadh, Saudi Arabia",
   email: "r129rashid@gmail.com",
   linkedin: "https://www.linkedin.com/in/rabi-rashid",

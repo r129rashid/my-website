@@ -51,20 +51,34 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={cn(
-                "text-xs font-sans font-medium tracking-wider uppercase text-fg-muted",
-                "hover:text-fg-primary transition-colors duration-200",
-                link.label === "Full Resume" &&
-                  "text-accent hover:text-accent-hover border border-accent/30 px-3 py-1.5 rounded hover:border-accent"
-              )}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.label === "Full Resume" ? (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-xs font-sans font-medium tracking-wider uppercase text-accent hover:text-accent-hover border border-accent/30 px-3 py-1.5 rounded hover:border-accent transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ) : (
+              /* Roll-up hover: label slides out, primary-colored clone slides in */
+              <a
+                key={link.label}
+                href={link.href}
+                className="relative inline-block overflow-hidden text-xs font-sans font-medium tracking-wider uppercase text-fg-muted group"
+              >
+                <span className="block transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full">
+                  {link.label}
+                </span>
+                <span
+                  aria-hidden
+                  className="absolute inset-0 block text-fg-primary translate-y-full transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0"
+                >
+                  {link.label}
+                </span>
+              </a>
+            )
+          )}
           <button
             onClick={toggle}
             aria-label="Toggle theme"
