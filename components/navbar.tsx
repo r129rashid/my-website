@@ -7,7 +7,7 @@ import { person } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-const navLinks = [
+const navLinks: { label: string; href: string; external?: boolean }[] = [
   // Root-prefixed so section links resolve from /resume too, not just the homepage
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
@@ -16,6 +16,7 @@ const navLinks = [
   { label: "Beyond", href: "/#beyond" },
   { label: "Contact", href: "/#contact" },
   { label: "Full Resume", href: "/resume" },
+  { label: "Website v2", href: "https://website-v2-lac.vercel.app/", external: true },
 ];
 
 export function Navbar() {
@@ -53,10 +54,12 @@ export function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) =>
-            link.label === "Full Resume" ? (
+            link.label === "Full Resume" || link.external ? (
               <a
                 key={link.label}
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="text-xs font-sans font-medium tracking-wider uppercase text-accent hover:text-accent-hover border border-accent/30 px-3 py-1.5 rounded hover:border-accent transition-colors duration-200"
               >
                 {link.label}
@@ -116,10 +119,12 @@ export function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 onClick={handleNavClick}
                 className={cn(
                   "text-sm font-sans py-3 text-fg-secondary hover:text-fg-primary transition-colors duration-200 border-b border-border last:border-0",
-                  link.label === "Full Resume" && "text-accent"
+                  (link.label === "Full Resume" || link.external) && "text-accent"
                 )}
               >
                 {link.label}
