@@ -12,6 +12,7 @@ import {
   Lightbulb,
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   Check,
   type LucideIcon,
 } from "lucide-react";
@@ -31,6 +32,17 @@ const ICONS: Record<string, LucideIcon> = {
 
 const STORAGE_KEY = "rr-ai-cards-progress";
 type Progress = Record<string, number[]>;
+
+// Rising candlesticks for the trading-academy entry-point motif (SVG 200x120).
+const CANDLES = [
+  { x: 24, bodyTop: 86, bodyH: 14, wickTop: 80, wickBottom: 104 },
+  { x: 56, bodyTop: 76, bodyH: 18, wickTop: 70, wickBottom: 98 },
+  { x: 88, bodyTop: 64, bodyH: 18, wickTop: 58, wickBottom: 88 },
+  { x: 120, bodyTop: 52, bodyH: 20, wickTop: 46, wickBottom: 78 },
+  { x: 152, bodyTop: 38, bodyH: 20, wickTop: 32, wickBottom: 64 },
+  { x: 184, bodyTop: 24, bodyH: 22, wickTop: 18, wickBottom: 52 },
+];
+const ACADEMY_URL = "https://rashids-learning-academy.vercel.app/";
 
 export function BeyondTheDayJob() {
   const reduce = useReducedMotion();
@@ -274,6 +286,91 @@ export function BeyondTheDayJob() {
             </div>
           </FadeInView>
         )}
+
+        {/* ── Second build: trading-academy entry point ─────────── */}
+        <FadeInView delay={0.22}>
+          <p className="mt-16 mb-4 text-xs font-sans font-medium uppercase tracking-wider text-fg-muted">
+            Another build
+          </p>
+          <a
+            href={ACADEMY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block overflow-hidden rounded border border-border bg-bg-surface transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-[0_8px_30px_var(--accent-glow)]"
+            style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px var(--border)" }}
+          >
+            {/* Gold top accent */}
+            <div className="absolute top-0 inset-x-0 h-0.5 bg-accent" />
+            <div className="flex flex-col sm:flex-row">
+              {/* Coded chart motif */}
+              <div className="relative shrink-0 sm:w-2/5 bg-bg-elevated p-6 flex items-center justify-center">
+                <svg
+                  viewBox="0 0 200 120"
+                  className="w-full max-w-[260px]"
+                  fill="none"
+                  aria-hidden
+                >
+                  <line x1="8" y1="104" x2="192" y2="104" stroke="var(--border)" strokeWidth="1" />
+                  {CANDLES.map((c, i) => (
+                    <g key={i}>
+                      <line
+                        x1={c.x}
+                        y1={c.wickTop}
+                        x2={c.x}
+                        y2={c.wickBottom}
+                        stroke="var(--accent)"
+                        strokeOpacity="0.5"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x={c.x - 5}
+                        y={c.bodyTop}
+                        width="10"
+                        height={c.bodyH}
+                        rx="1"
+                        fill="var(--accent)"
+                        fillOpacity={0.25 + i * 0.12}
+                      />
+                    </g>
+                  ))}
+                  <motion.path
+                    d="M8 96 L44 84 L80 70 L116 56 L152 40 L188 22"
+                    stroke="var(--accent)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={reduce ? false : { pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 1, ease: EASE_OUT }}
+                  />
+                </svg>
+              </div>
+
+              {/* Text */}
+              <div className="p-6 md:p-8 flex flex-col justify-center">
+                <span className="inline-flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                  <span className="text-xs font-sans font-medium uppercase tracking-wider text-accent">
+                    New · Live
+                  </span>
+                </span>
+                <h3 className="font-serif text-2xl md:text-3xl text-fg-primary leading-snug mb-2">
+                  Trading, explained from scratch.
+                </h3>
+                <p className="font-sans text-sm text-fg-secondary leading-relaxed mb-5 max-w-md">
+                  Rashid&apos;s Learning Academy — a self-built micro-site that breaks
+                  investing and trading basics into plain, visual lessons. Charts, risk,
+                  order types, and more.
+                </p>
+                <span className="inline-flex items-center gap-1.5 font-sans text-sm font-semibold text-accent group-hover:gap-2.5 transition-all duration-200">
+                  Visit the academy
+                  <ArrowUpRight size={16} />
+                </span>
+              </div>
+            </div>
+          </a>
+        </FadeInView>
       </div>
     </section>
   );
