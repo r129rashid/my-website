@@ -16,7 +16,7 @@ const navLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "Beyond", href: "/#beyond" },
   { label: "Contact", href: "/#contact" },
   { label: "Full Resume", href: "/resume" },
-  { label: "Website v2", href: "https://website-v2-lac.vercel.app/", external: true },
+  { label: "Website v2", href: "https://rabirashid.vercel.app/", external: true },
 ];
 
 export function Navbar() {
